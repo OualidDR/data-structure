@@ -49,8 +49,37 @@ class Linked_List :
         while current.next :
             current = current.next
         current.next = new_node
+
+    def insert_at(self, index, data):
+
+        new_node = Node(data)
+
+        if not self.head or index == 0 :
+            new_node.next = self.head
+            self.head=new_node
+            return
+        
+        current = self.head
+        count = 0 
+
+        while current and count < index - 1 :
+            prev = current
+            count+= 1
+            current = current.next
+
+        if not current :
+            print('index invalid')
+            return 
+        
+        new_node.next=current.next
+        current.next = new_node
+        
+        
+             
+        
     
-    def instert_after(self, data, prev_node : Node) :
+    def instert_after(self, data, prev_node) :
+        
         if prev_node is None :
             print('prev_node can\'t be None')
             return
@@ -116,21 +145,6 @@ class Linked_List :
             return
         current.next = current.next.next
 
-
-    
-        
-        
-        
-
-
-
-
-
-
-    
-
-
-
     def print(self) :
         if self.head == None:
             print("linked list empty")
@@ -145,14 +159,16 @@ class Linked_List :
 ll = Linked_List()
 data = ['a', 'b', 'c','d','e']
 ll.insert_from_list(data)
+ll.insert_at(3,'walid')
 ll.print()
 print(ll.search('a'))
 ll.delet_value('a')
 ll.print()
 print(ll.search('a'))
 print(ll.lenght())
-ll.del_index(-2)
+ll.del_index(2)
 ll.print()
+
 print(ll.lenght())
 # <-------------------My try------------------->
 
