@@ -24,152 +24,152 @@
 # print(f'rep 6 : {l}')
 # <-------------------linked list------------------->
 
-class Node :
-    def __init__(self, data = None, next = None):
+# class Node :
+#     def __init__(self, data = None, next = None):
 
-        self.data = data # the value of the node 
-        self.next = next # the pointer to the next node  
+#         self.data = data # the value of the node 
+#         self.next = next # the pointer to the next node  
 
-class Linked_List :
-    def __init__(self):
-        self.head = None #initially the linked list is empty 
+# class Linked_List :
+#     def __init__(self):
+#         self.head = None #initially the linked list is empty 
 
-    def insert_at_begining(self, data) :
-        new_node = Node(data)
-        new_node.next = self.head
-        self.head = new_node
+#     def insert_at_begining(self, data) :
+#         new_node = Node(data)
+#         new_node.next = self.head
+#         self.head = new_node
 
 
-    def insert_at_end(self, data) :
-        new_node = Node(data)
-        if self.head is None :
-            self.head = new_node
-            return
-        current = self.head
-        while current.next :
-            current = current.next
-        current.next = new_node
+#     def insert_at_end(self, data) :
+#         new_node = Node(data)
+#         if self.head is None :
+#             self.head = new_node
+#             return
+#         current = self.head
+#         while current.next :
+#             current = current.next
+#         current.next = new_node
 
-    def insert_at(self, index, data):
+#     def insert_at(self, index, data):
 
-        new_node = Node(data)
+#         new_node = Node(data)
 
-        if not self.head or index == 0 :
-            new_node.next = self.head
-            self.head=new_node
-            return
+#         if not self.head or index == 0 :
+#             new_node.next = self.head
+#             self.head=new_node
+#             return
         
-        current = self.head
-        count = 0 
+#         current = self.head
+#         count = 0 
 
-        while current and count < index - 1 :
-            prev = current
-            count+= 1
-            current = current.next
+#         while current and count < index - 1 :
+#             prev = current
+#             count+= 1
+#             current = current.next
 
-        if not current :
-            print('index invalid')
-            return 
+#         if not current :
+#             print('index invalid')
+#             return 
         
-        new_node.next=current.next
-        current.next = new_node
+#         new_node.next=current.next
+#         current.next = new_node
         
         
              
         
     
-    def instert_after(self, data, prev_node) :
+#     def instert_after(self, data, prev_node) :
         
-        if prev_node is None :
-            print('prev_node can\'t be None')
-            return
-        new_node = Node(data)
-        new_node.next = prev_node.next
-        prev_node.next = new_node
+#         if prev_node is None :
+#             print('prev_node can\'t be None')
+#             return
+#         new_node = Node(data)
+#         new_node.next = prev_node.next
+#         prev_node.next = new_node
 
-    def delet_value(self, key) :
-        current = self.head
-        if current and current.data == key :
-            self.head = current.next
+#     def delet_value(self, key) :
+#         current = self.head
+#         if current and current.data == key :
+#             self.head = current.next
         
-        while current and current.data != key :
-            prev = current
-            current = current.next 
+#         while current and current.data != key :
+#             prev = current
+#             current = current.next 
 
-        if current == None :
-            print('element not found !')
-            return
-        prev.next = current.next
+#         if current == None :
+#             print('element not found !')
+#             return
+#         prev.next = current.next
 
-    def search (self, key) :
-        current = self.head
-        while current : 
-            if current.data == key :
-                return True
-            current = current.next 
-        return False
+#     def search (self, key) :
+#         current = self.head
+#         while current : 
+#             if current.data == key :
+#                 return True
+#             current = current.next 
+#         return False
     
-    def insert_from_list(self, liste):
-        for i in liste : 
-            self.insert_at_begining(i)
+#     def insert_from_list(self, liste):
+#         for i in liste : 
+#             self.insert_at_begining(i)
             
 
-    def lenght(self) :
-        count = 0
-        current = self.head
-        while current :
-            count+=1
-            current = current.next
-        return count
+#     def lenght(self) :
+#         count = 0
+#         current = self.head
+#         while current :
+#             count+=1
+#             current = current.next
+#         return count
     
-    def del_index(self, index) :
-        if not self.head : 
-            print('list vide ')
-            return
+#     def del_index(self, index) :
+#         if not self.head : 
+#             print('list vide ')
+#             return
         
-        if index<0 or index > self.lenght() :
-            raise Exception('invalid index !')
+#         if index<0 or index > self.lenght() :
+#             raise Exception('invalid index !')
         
-        # supprimer le 1er elem
-        if index == 0 :
+#         # supprimer le 1er elem
+#         if index == 0 :
             
-            self.head = self.head.next
-            return
-        current = self.head
-        count = 0 
-        while current and count < index - 1 : 
-            current = current.next
-            count+= 1
-        if not current or not current.next : 
-            print ('elem not found ')
-            return
-        current.next = current.next.next
+#             self.head = self.head.next
+#             return
+#         current = self.head
+#         count = 0 
+#         while current and count < index - 1 : 
+#             current = current.next
+#             count+= 1
+#         if not current or not current.next : 
+#             print ('elem not found ')
+#             return
+#         current.next = current.next.next
 
-    def print(self) :
-        if self.head == None:
-            print("linked list empty")
-            return
+#     def print(self) :
+#         if self.head == None:
+#             print("linked list empty")
+#             return
         
-        current = self.head
-        while current :
-            print(current.data, end=" --> ")
-            current=current.next
-        print("None")
+#         current = self.head
+#         while current :
+#             print(current.data, end=" --> ")
+#             current=current.next
+#         print("None")
 
-ll = Linked_List()
-data = ['a', 'b', 'c','d','e']
-ll.insert_from_list(data)
-ll.insert_at(3,'walid')
-ll.print()
-print(ll.search('a'))
-ll.delet_value('a')
-ll.print()
-print(ll.search('a'))
-print(ll.lenght())
-ll.del_index(2)
-ll.print()
+# ll = Linked_List()
+# data = ['a', 'b', 'c','d','e']
+# ll.insert_from_list(data)
+# ll.insert_at(3,'walid')
+# ll.print()
+# print(ll.search('a'))
+# ll.delet_value('a')
+# ll.print()
+# print(ll.search('a'))
+# print(ll.lenght())
+# ll.del_index(2)
+# ll.print()
 
-print(ll.lenght())
+# print(ll.lenght())
 # <-------------------My try------------------->
 
 # linked list has always a head remember , we have two classes linked list and node 
@@ -241,10 +241,110 @@ class List :
             current=current.next
         current.next = new_node
         
-     
+
+# <------------------another try ---------------->
+
+
+class Node :
+    def __init__(self, data = None, next = None):
+        self.data = data
+        self.next = next
+
+class Linked_Liste :
+    def __init__(self):
+        self.head = None
+
+    def insert_at_biggining(self, data) :
+
+        new_data = Node(data)
+
+        if self.head is None :
+            self.head = new_data
+            return 
+        
+        new_data.next = self.head
+        self.head = new_data
+
+
+    def insert_at_end(self, data) :
+        new_node = Node(data)
+
+        if self.head is None :
+            self.head = new_node
+            return
+        
+        current = self.head 
+        while current.next :
+            current=current.next
+        current.next=new_node
+
+    def insert_from_list(self,liste) :
+        for i in liste :
+            self.insert_at_end(i)
+
+    def insert_after(self, prev, data) :
+        new_node = Node(data)
+        if self.head is None :
+            self.head=new_node
+            return
+        current = self.head
+        while current.data != prev :
+            current = current.next 
+
+        new_node.next = current.next
+        current.next=new_node
+    
+    def lenght(self) :
+        count = 0
+        current = self.head
+        while current :
+            count += 1
+        return count
+
+    def insert_with_index(self, index, data) :
+        # if index < 0 or index > self.lenght() :
+        #         print('invalid index !!')
+        #         return
+        new_node = Node(data)
+        if self.head is None or index == 0  :
+            new_node.next = self.head
+            self.head = new_node 
+            return
+
+        count = 0 
+        current =self.head
+
+        while current and count < index -1 :
+                
+                count += 1
+                current = current.next
+        if current is None :
+                print('invalid index !')
+                return 
+
+        new_node.next = current.next
+        current.next = new_node
         
 
 
+    def print(self) :
+        if self.head is None :
+            print('list vide !')
+            return 
+        current = self.head
+        while current :
+            print(current.data, end = '->')
+            current = current.next
+        print(None)
 
+ll=Linked_Liste()
+ll.insert_at_biggining(4)
+ll.insert_at_biggining(3)
+ll.insert_at_biggining(2)
+ll.insert_at_biggining(1)
+ll.insert_at_end(5)
+ll.insert_from_list(['a', 'b', 'c'])
+ll.insert_after('a','walid')
+ll.insert_with_index(4,'index')
+ll.print()
 
-        
