@@ -245,86 +245,182 @@ class List :
 # <------------------another try ---------------->
 
 
+# class Node :
+#     def __init__(self, data = None, next = None):
+#         self.data = data
+#         self.next = next
+
+# class Linked_Liste :
+#     def __init__(self):
+#         self.head = None
+
+#     def insert_at_biggining(self, data) :
+
+#         new_data = Node(data)
+
+#         if self.head is None :
+#             self.head = new_data
+#             return 
+        
+#         new_data.next = self.head
+#         self.head = new_data
+
+
+#     def insert_at_end(self, data) :
+#         new_node = Node(data)
+
+#         if self.head is None :
+#             self.head = new_node
+#             return
+        
+#         current = self.head 
+#         while current.next :
+#             current=current.next
+#         current.next=new_node
+
+#     def insert_from_list(self,liste) :
+#         for i in liste :
+#             self.insert_at_end(i)
+
+#     def insert_after(self, prev, data) :
+#         new_node = Node(data)
+#         if self.head is None :
+#             self.head=new_node
+#             return
+#         current = self.head
+#         while current.data != prev :
+#             current = current.next 
+
+#         new_node.next = current.next
+#         current.next=new_node
+    
+#     def lenght(self) :
+#         count = 0
+#         current = self.head
+#         while current :
+#             count += 1
+#         return count
+
+#     def insert_with_index(self, index, data) :
+#         # if index < 0 or index > self.lenght() :
+#         #         print('invalid index !!')
+#         #         return
+#         new_node = Node(data)
+#         if self.head is None or index == 0  :
+#             new_node.next = self.head
+#             self.head = new_node 
+#             return
+
+#         count = 0 
+#         current =self.head
+
+#         while current and count < index -1 :
+                
+#                 count += 1
+#                 current = current.next
+#         if current is None :
+#                 print('invalid index !')
+#                 return 
+
+#         new_node.next = current.next
+#         current.next = new_node
+        
+
+
+#     def print(self) :
+#         if self.head is None :
+#             print('list vide !')
+#             return 
+#         current = self.head
+#         while current :
+#             print(current.data, end = '->')
+#             current = current.next
+#         print(None)
+
+# ll=Linked_Liste()
+# ll.insert_at_biggining(4)
+# ll.insert_at_biggining(3)
+# ll.insert_at_biggining(2)
+# ll.insert_at_biggining(1)
+# ll.insert_at_end(5)
+# ll.insert_from_list(['a', 'b', 'c'])
+# ll.insert_after('a','walid')
+# ll.insert_with_index(4,'index')
+# ll.print()
+
+# <---------------exercices------------------>
+
+
 class Node :
     def __init__(self, data = None, next = None):
         self.data = data
         self.next = next
 
-class Linked_Liste :
+class LinkedList :
     def __init__(self):
         self.head = None
 
+
+
     def insert_at_biggining(self, data) :
-
-        new_data = Node(data)
-
-        if self.head is None :
-            self.head = new_data
-            return 
-        
-        new_data.next = self.head
-        self.head = new_data
-
-
-    def insert_at_end(self, data) :
         new_node = Node(data)
 
         if self.head is None :
             self.head = new_node
             return
-        
-        current = self.head 
-        while current.next :
-            current=current.next
-        current.next=new_node
+        new_node.next = self.head
+        self.head = new_node
 
-    def insert_from_list(self,liste) :
-        for i in liste :
-            self.insert_at_end(i)
-
-    def insert_after(self, prev, data) :
+    def insert_at_end(self, data) :
         new_node = Node(data)
         if self.head is None :
-            self.head=new_node
+            self.head = new_node
             return
+        
         current = self.head
-        while current.data != prev :
-            current = current.next 
+        while current.next :
+            current = current.next
+        current.next = new_node
 
-        new_node.next = current.next
-        current.next=new_node
-    
-    def lenght(self) :
-        count = 0
-        current = self.head
-        while current :
-            count += 1
-        return count
 
-    def insert_with_index(self, index, data) :
-        # if index < 0 or index > self.lenght() :
-        #         print('invalid index !!')
-        #         return
+
+
+
+
+
+    def insert_after_value(self, value, data) :
         new_node = Node(data)
-        if self.head is None or index == 0  :
-            new_node.next = self.head
-            self.head = new_node 
+        if self.head is None :
+            print ('there is no value to add after ! the list is empty ')
             return
 
-        count = 0 
-        current =self.head
-
-        while current and count < index -1 :
-                
-                count += 1
-                current = current.next
-        if current is None :
-                print('invalid index !')
-                return 
-
+        current = self.head
+        while current and current.data != value :
+            current = current.next
+        if not current :
+            print('invalid value !')
+            return 
         new_node.next = current.next
         current.next = new_node
-        
+
+    def remove_value(self, value) :
+        if self.head is None :
+            print ('the list is empty !')
+            return
+
+        if self.head.data == value :
+            self.head = self.head.next
+            return
+
+        current = self.head
+        while current and current.data != value :
+            prev = current
+            current = current.next
+        if not current :
+            print('invalid value !')
+            return
+        prev.next = current.next
+
 
 
     def print(self) :
@@ -337,14 +433,86 @@ class Linked_Liste :
             current = current.next
         print(None)
 
-ll=Linked_Liste()
-ll.insert_at_biggining(4)
-ll.insert_at_biggining(3)
-ll.insert_at_biggining(2)
+    def print_forward(self) :
+        if self.head is None :
+            print('empty lsi !!')
+            return
+        current = self.head
+        while current :
+            print(current.data, end = '<-->')
+            current = current.next
+    
+
+        
+ll=LinkedList()
 ll.insert_at_biggining(1)
-ll.insert_at_end(5)
-ll.insert_from_list(['a', 'b', 'c'])
-ll.insert_after('a','walid')
-ll.insert_with_index(4,'index')
+ll.insert_after_value(1,'oualid')
+ll.insert_after_value('oualid', 'draidi')
+ll.remove_value(1)
+ll.remove_value('oualid')
 ll.print()
 
+# <----------------doubleLinkedList--------------------->
+
+class Node :
+    def __init__(self, data = None, prev = None, next = None):
+        self.data = data
+        self.next = next 
+        self.prev = prev 
+
+    
+
+class Double_linked_list :
+
+    def __init__(self):
+        self.head = None
+
+    def insert_at_biggining(self, data) :
+        new_node = Node(data)
+
+        if self.head is None :
+            self.head = new_node
+            return
+        new_node.next = self.head
+        self.head.prev = new_node
+        self.head = new_node
+    
+    def insert_at_end(self, data) :
+        new_node = Node(data)
+        if self.head is None :
+            self.head = new_node
+            return
+        
+        current = self.head
+        while current.next :
+            current = current.next
+        current.next = new_node
+        new_node.prev = current
+
+    def print_forward(self) :
+        if self.head is None :
+            print('empty lsi !!')
+            return
+        current = self.head
+        while current :
+            print(current.data, end = '-->')
+            current = current.next
+
+        print(None)
+
+    def print_backward(self) :
+        if self.head is None :
+            print('empty lsi !!')
+            return
+        current = self.head
+        while current :
+            current = current.next
+        while current :
+            print(current.data, end = '-->')
+            current = current.prev
+        print(None)
+
+        
+
+
+    
