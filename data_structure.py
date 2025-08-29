@@ -351,6 +351,170 @@ class List :
 # <---------------exercices------------------>
 
 
+# class Node :
+#     def __init__(self, data = None, next = None):
+#         self.data = data
+#         self.next = next
+
+# class LinkedList :
+#     def __init__(self):
+#         self.head = None
+
+
+
+#     def insert_at_biggining(self, data) :
+#         new_node = Node(data)
+
+#         if self.head is None :
+#             self.head = new_node
+#             return
+#         new_node.next = self.head
+#         self.head = new_node
+
+#     def insert_at_end(self, data) :
+#         new_node = Node(data)
+#         if self.head is None :
+#             self.head = new_node
+#             return
+        
+#         current = self.head
+#         while current.next :
+#             current = current.next
+#         current.next = new_node
+
+
+
+
+
+
+
+#     def insert_after_value(self, value, data) :
+#         new_node = Node(data)
+#         if self.head is None :
+#             print ('there is no value to add after ! the list is empty ')
+#             return
+
+#         current = self.head
+#         while current and current.data != value :
+#             current = current.next
+#         if not current :
+#             print('invalid value !')
+#             return 
+#         new_node.next = current.next
+#         current.next = new_node
+
+#     def remove_value(self, value) :
+#         if self.head is None :
+#             print ('the list is empty !')
+#             return
+
+#         if self.head.data == value :
+#             self.head = self.head.next
+#             return
+
+#         current = self.head
+#         while current and current.data != value :
+#             prev = current
+#             current = current.next
+#         if not current :
+#             print('invalid value !')
+#             return
+#         prev.next = current.next
+
+
+
+#     def print(self) :
+#         if self.head is None :
+#             print('list vide !')
+#             return 
+#         current = self.head
+#         while current :
+#             print(current.data, end = '->')
+#             current = current.next
+#         print(None)
+
+#     def print_forward(self) :
+#         if self.head is None :
+#             print('empty lsi !!')
+#             return
+#         current = self.head
+#         while current :
+#             print(current.data, end = '<-->')
+#             current = current.next
+    
+
+        
+# ll=LinkedList()
+# ll.insert_at_biggining(1)
+# ll.insert_after_value(1,'oualid')
+# ll.insert_after_value('oualid', 'draidi')
+# ll.remove_value(1)
+# ll.remove_value('oualid')
+# ll.print()
+
+# <----------------doubleLinkedList--------------------->
+
+# class Node :
+#     def __init__(self, data = None, prev = None, next = None):
+#         self.data = data
+#         self.next = next 
+#         self.prev = prev 
+
+    
+
+# class Double_linked_list :
+
+#     def __init__(self):
+#         self.head = None
+
+#     def insert_at_biggining(self, data) :
+#         new_node = Node(data)
+
+#         if self.head is None :
+#             self.head = new_node
+#             return
+#         new_node.next = self.head
+#         self.head.prev = new_node
+#         self.head = new_node
+    
+#     def insert_at_end(self, data) :
+#         new_node = Node(data)
+#         if self.head is None :
+#             self.head = new_node
+#             return
+        
+#         current = self.head
+#         while current.next :
+#             current = current.next
+#         current.next = new_node
+#         new_node.prev = current
+
+#     def print_forward(self) :
+#         if self.head is None :
+#             print('empty lsi !!')
+#             return
+#         current = self.head
+#         while current :
+#             print(current.data, end = '-->')
+#             current = current.next
+
+#         print(None)
+
+#     def print_backward(self) :
+#         if self.head is None :
+#             print('empty lsi !!')
+#             return
+#         current = self.head
+#         while current :
+#             current = current.next
+#         while current :
+#             print(current.data, end = '-->')
+#             current = current.prev
+#         print(None)
+
+        
+
+# <-----------------------questions------------------------->
 class Node :
     def __init__(self, data = None, next = None):
         self.data = data
@@ -359,6 +523,34 @@ class Node :
 class LinkedList :
     def __init__(self):
         self.head = None
+
+# find the kth node from Back
+# done
+    def find_kth_node_from_back(self, k) :
+        if self.head is None :
+            print (' the list is empty ! ')
+            return
+        current = self.head
+        count = 0
+        value = self.head
+        while current :
+            current = current.next
+            count += 1
+        if k < 0 or k > count :
+            print('invalid k !')
+            return
+
+        while value and value.data != count-k :
+            value = value.next
+        if not value : 
+            print (' there is no value in the list ! ')
+            return
+        print(value.data)
+
+
+
+        
+
 
 
 
@@ -420,7 +612,7 @@ class LinkedList :
             print('invalid value !')
             return
         prev.next = current.next
-
+    
 
 
     def print(self) :
@@ -433,86 +625,78 @@ class LinkedList :
             current = current.next
         print(None)
 
-    def print_forward(self) :
-        if self.head is None :
-            print('empty lsi !!')
-            return
-        current = self.head
-        while current :
-            print(current.data, end = '<-->')
-            current = current.next
     
 
+# yes i print the reverse of a linked list successfully
+def print_reverse(ll : LinkedList) :
+        if ll.head is None :
+            print('list vide !')
+            return 
+        current = ll.head
+        L=[]
+        while current :
+            L.append(current.data)
+            current = current.next
         
+        for i in range(len(L)-1,-1,-1) :
+            print(L[i], end='-->')
+        print(None)
+
+# cheack if two linked lists have intersection point
+# i cheaked out with gpt 
+def lenght(head) :
+        count = 0
+        current = head
+        while current :
+            count+=1
+            current = current.next
+        return count
+# we can't mak operations between methods !!!!!!!!!!
+def cheack(l1 : LinkedList, l2 : LinkedList) :
+    if not l1.head or not l2.head :
+        print('one of the lists is empty !')
+        return  
+    # cheak wich of lists is longer 
+    current1 = l1.head
+    current2 = l2.head
+    len1 = lenght(l1.head)
+    len2 = lenght(l2.head)
+    if  len1 > len2 :
+        for i in range (len1-len2) :
+            current1 = current1.next
+    else : 
+        for i in range(len2-len1) :
+            current2 = current2.next
+    while current1 and current2 :
+        if current2.data == current1.data :
+            print (f'yes ther is an intersection at {current1.data}')
+            return
+        current1 = current1.next
+        current2 = current2.next
+    print('no there is no intersection point !')
+
+
+
 ll=LinkedList()
+
+
+ll.insert_at_biggining(5)
+ll.insert_at_biggining(6)
+ll.insert_at_biggining(4)
+ll.insert_at_biggining(3)
+ll.insert_at_biggining(2)
 ll.insert_at_biggining(1)
-ll.insert_after_value(1,'oualid')
-ll.insert_after_value('oualid', 'draidi')
-ll.remove_value(1)
-ll.remove_value('oualid')
 ll.print()
 
-# <----------------doubleLinkedList--------------------->
-
-class Node :
-    def __init__(self, data = None, prev = None, next = None):
-        self.data = data
-        self.next = next 
-        self.prev = prev 
-
-    
-
-class Double_linked_list :
-
-    def __init__(self):
-        self.head = None
-
-    def insert_at_biggining(self, data) :
-        new_node = Node(data)
-
-        if self.head is None :
-            self.head = new_node
-            return
-        new_node.next = self.head
-        self.head.prev = new_node
-        self.head = new_node
-    
-    def insert_at_end(self, data) :
-        new_node = Node(data)
-        if self.head is None :
-            self.head = new_node
-            return
-        
-        current = self.head
-        while current.next :
-            current = current.next
-        current.next = new_node
-        new_node.prev = current
-
-    def print_forward(self) :
-        if self.head is None :
-            print('empty lsi !!')
-            return
-        current = self.head
-        while current :
-            print(current.data, end = '-->')
-            current = current.next
-
-        print(None)
-
-    def print_backward(self) :
-        if self.head is None :
-            print('empty lsi !!')
-            return
-        current = self.head
-        while current :
-            current = current.next
-        while current :
-            print(current.data, end = '-->')
-            current = current.prev
-        print(None)
-
-        
+print_reverse(ll)
 
 
-    
+ll1 = LinkedList()
+
+
+ll1.insert_at_biggining(5)
+ll1.insert_at_biggining(6)
+ll1.insert_at_biggining(9)
+ll1.print()
+print_reverse(ll1)
+cheack(ll,ll1)
