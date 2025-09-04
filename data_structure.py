@@ -556,6 +556,65 @@ class LinkedList :
             return 
         new_node.next = current.next
         current.next = new_node
+# make the end node to the first node 
+    def from_end_to_big(self) :
+        if self.head is None :
+            print (' the list is empty ')
+            return
+        prev = self.head
+        current = self.head
+        while current.next :
+            prev = current 
+            current = current.next 
+
+        current.next = self.head
+        self.head = current
+        prev.next = None
+# cheack if linked list is palindrome casac c -> a -> s -> a -> c 
+# with while loop
+    #   O(log(n))
+    def palindrom (self) :
+        if self.head is None :
+            print ('the list is empty ')
+            return
+        current = self.head 
+        L = []
+        while current : 
+            L.append(current.data)
+            current = current.next 
+        i=0
+        j=len(L)-1
+        while L[i] == L[j]  and j >= i :
+            i += 1
+            j -= 1
+        if L[i] != L[j] :
+            print(f'Non, it\'s not a palindrome because {L[i]} # {L[j]}')
+            return
+        print('yes it\'s a palandrome')
+# with foor loop 
+    # O(n +log(n))
+    def palindrom1 (self) :
+        if self.head is None :
+            print ('the list is empty ')
+            return
+        current = self.head 
+        L = []
+        while current : 
+            L.append(current.data)
+            current = current.next 
+        for i in range(int(len(L)/2)+1) :
+            if L[i] != L[len(L)-i-1] :
+                print(f'Non, it\'s not a palindrome because {L[i]} # {L[len(L)-i-1]}')
+                return
+        print('yes it\'s a palandrome')
+
+    # recursive is in reversed linkedlist simple and double 
+    
+
+
+
+
+        
 
     def remove_value(self, value) :
         if self.head is None :
@@ -574,6 +633,7 @@ class LinkedList :
             print('invalid value !')
             return
         prev.next = current.next
+
 # using Turtol/rubet methode means movs node by node and the second jumps node !
 # floyd CFA (Find Cycle List) called Tortoise and Hare algorithm
     def cheak_if_cycle(self):
@@ -582,9 +642,9 @@ class LinkedList :
             return
         current1 = self.head
         current2 = self.head
-        while current1 and current2 :
+        while current2 and current2.next :
             current1 = current1.next 
-            current2 = current2.next
+            current2 = current2.next.next
             if current1.data == current2.data :
                 print('its a cycle list !')
                 return
@@ -612,12 +672,13 @@ class LinkedList :
             return 
         current = self.head
         while current :
-            print(current.data, end = '->')
+            print(current.data, end = ' --> ')
             current = current.next
         print(None)
 
     
 # yes i print the reverse of a linked list successfully
+# here i used a list to store values 
 def print_reverse(ll : LinkedList) :
         if ll.head is None :
             print('list vide !')
@@ -629,9 +690,22 @@ def print_reverse(ll : LinkedList) :
             current = current.next
         
         for i in range(len(L)-1,-1,-1) :
-            print(L[i], end='-->')
+            print(L[i], end=' --> ')
         print(None)
+# now i have to make a reversed linked list not just a print 
+# here i used a liked list to create the reversed list 
+def revers(l : Linked_List) :
+    if l.head is None :
+        print('list vide !')
+        return
+    ll = Linked_List()
+    current = l.head
+    while current :
+        ll.insert_at_begining(current.data)
+        current = current.next
+    ll.print()
 
+    
 
 
 # cheack if two linked lists have intersection point
@@ -644,6 +718,9 @@ def lenght(head) :
             current = current.next
         return count
 # we can't mak operations between methods !!!!!!!!!!
+
+
+# here is a probleme i cheack out the data not nodes wich is not the objectf !!!!!!!!!!!!!
 def cheack(l1 : LinkedList, l2 : LinkedList) :
     if not l1.head or not l2.head :
         print('one of the lists is empty !')
@@ -660,30 +737,124 @@ def cheack(l1 : LinkedList, l2 : LinkedList) :
         for i in range(len2-len1) :
             current2 = current2.next
     while current1 and current2 :
-        if current2.data == current1.data :
-            print (f'yes ther is an intersection at {current1.data}')
+        if current2 == current1 :
+            print (f'yes there is an intersection at {current1.data}')
             return
         current1 = current1.next
         current2 = current2.next
     print('no there is no intersection point !')
+    
+# I did it with my self successfully alhamdolilllaaaaah 
+ 
+def remov_duplic(l : Linked_List) :
+    if not l.head  :
+        print(' the list is empty !')
+        return 
+    s = set()
+    t = Linked_List()
+    current = l.head
+    while current :
+        s.add(current.data)
+        current = current.next
+    for i in s :
+        t.insert_at_end(i)
+    t.print()
 
-ll=LinkedList()
+def make_intersection_point(l1 : Linked_List, l2 : Linked_List) :
+    if not l1.head or not l2.head : 
+        print('empty linked listes!')
+        return
+
+    current1 = l1.head
+    current2 = l2.head
+        
+    while current2.next :
+        current2 = current2.next
+    n = lenght(l1.head)
+    if n > 3 :
+        for i in range(lenght(l1.head)-3) :
+            current1 = current1.next
+    current2.next = current1
+    
 
 
-ll.insert_at_biggining(5)
-ll.insert_at_biggining(4)
-ll.insert_at_biggining(3)
-ll.insert_at_biggining(2)
-ll.insert_at_biggining(1)
-ll.print()
-ll.find_middle()
-print_reverse(ll)
 
-ll1 = LinkedList()
 
-ll1.insert_at_biggining(5)
-ll1.insert_at_biggining(6)
-ll1.insert_at_biggining(9)
-ll1.print()
-print_reverse(ll1)
-cheack(ll,ll1)
+
+
+
+# ll=LinkedList()
+
+
+
+# ll.insert_at_biggining('c')
+# ll.insert_at_biggining('a')
+# ll.insert_at_biggining('s')
+# ll.insert_at_biggining('q')
+# ll.insert_at_biggining('c')
+
+# ll.insert_at_biggining(1)
+# ll.print()
+# ll.from_end_to_big()
+
+# ll.print()
+# ll.palindrom()
+# ll.palindrom1()
+
+# ll1 = LinkedList()
+
+# ll1.insert_at_biggining(1)
+# ll1.print()
+
+# make_intersection_point(ll, ll1)
+# ll1.print()
+# cheack(ll, ll1)
+# ll2 = LinkedList()
+# ll2.insert_at_biggining(6)
+# ll2.insert_at_biggining(5)
+# ll2.insert_at_biggining(4)
+# ll2.insert_at_biggining(3)
+# ll2.print()
+# cheack(ll1,ll2)
+
+# revers(ll)
+# print_reverse(ll)
+
+
+# recursive factoriel 
+def fact(n : int) :
+    if  n <= 1 :
+        return 1
+    else:
+        return n*fact(n-1)
+
+# <------------------------hash_maps_implementation---------------------->
+
+class HashTable :
+    def __init__(self):
+        self.max =5
+        self.arr = [None for item in range(self.max)]
+
+    def get_hash(self, key) :
+        h = 0 
+        for char in key :
+            h += ord(char)
+        return h % self.max
+        
+
+    def add(self, key, val ) :
+            h = self.get_hash(key)
+            self.arr[h] = val 
+    
+    def get(self, key) :
+        h = self.get_hash(key)
+        return self.arr[h]
+
+
+
+         
+hash = HashTable()
+print(hash.get_hash('walid'))
+
+# les collisions  
+# Une collision arrive quand deux clés différentes produisent le même index après hachage.
